@@ -24,7 +24,8 @@ This project involves building an application to scrape, store, and visualize da
    - Using the `pymongo` library to connect to a local MongoDB instance.
    - Ingesting all data from the downloaded files into a single collection.
 
-   ![MongoDB Image](https://example.com/mongodb-image.png) 
+   ![MongoDB Image]([Screenshot (44)](https://github.com/user-attachments/assets/2b61406e-21ab-4a79-8a67-370281fbd381)
+end-image.png)
 
 **Step** 3. **Creating REST API**
    - For the backend, we have used Express and Node.js.
@@ -33,4 +34,4 @@ This project involves building an application to scrape, store, and visualize da
 **Step** 4. **Frontend Development**
    - For the frontend, we have used HTML, CSS, and JavaScript.
 
-   ![Frontend Image](https://example.com/frontend-image.png) 
+    
