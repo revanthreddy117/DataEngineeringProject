@@ -1,6 +1,7 @@
 # Data Engineer Project
 
 ## Description
+This project involves building an application to scrape, store, and visualize data from the [NYC TLC Trip Record Data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page) Trip Record Data 
 
 
 
