@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parquet Data</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Parquet Data Viewer</h1>
+  </header>
+  <main>
+    <div id="content">
+      <h2>Data</h2>
+      <div class="controls">
+        <button onclick="updateEndpoint('/data')">All Data</button>
+        <button onclick="promptLicense()">By License</button>
+        <button onclick="promptDispatch()">By Dispatch</button>
+        <button onclick="promptOrigin()">By Origin</button>
+        <button onclick="promptDate()">By Date</button>
+        <button onclick="promptDateRange()">By Date Range</button>
+        <button onclick="promptPickup()">By Pickup Location</button>
+        <button onclick="promptDropoff()">By Dropoff Location</button>
+        <button onclick="promptDistance()">By Distance</button>
+        <button onclick="promptFare()">By Fare</button>
+        <button onclick="promptTips()">By Tips</button>
+      </div>
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>License Num</th>
+            <th>Dispatch Base Num</th>
+            <th>Origin Base Num</th>
+            <th>Request Datetime</th>
+            <th>Pickup Datetime</th>
+            <th>Dropoff Datetime</th>
+            <th>Pickup Location</th>
+            <th>Dropoff Location</th>
+            <th>Trip Miles</th>
+            <th>Fare</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </main>
+  <script>
+    async function fetchData(endpoint) {
+      try {
+        const response = await fetch(endpoint);
+        const data = await response.json();
+        const tableBody = document.querySelector('#data-table tbody');
+        tableBody.innerHTML = '';
+        data.forEach(item => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${item.hvfhs_license_num}</td>
+            <td>${item.dispatching_base_num}</td>
+            <td>${item.originating_base_num}</td>
+            <td>${new Date(item.request_datetime).toLocaleString()}</td>
+            <td>${new Date(item.pickup_datetime).toLocaleString()}</td>
+            <td>${new Date(item.dropoff_datetime).toLocaleString()}</td>
+            <td>${item.PULocationID}</td>
+            <td>${item.DOLocationID}</td>
+            <td>${item.trip_miles}</td>
+            <td>${item.base_passenger_fare}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    function updateEndpoint(endpoint) {
+      history.pushState(null, '', endpoint);
+      fetchData(endpoint);
+    }
+
+    window.addEventListener('popstate', () => {
+      fetchData(location.pathname);
+    });
+
+    // Placeholder functions to allow user input
+    function promptLicense() {
+      const license = prompt("Enter License Number:");
+      if (license) updateEndpoint(`/data/license/${license}`);
+    }
+
+    function promptDispatch() {
+      const dispatch = prompt("Enter Dispatch Number:");
+      if (dispatch) updateEndpoint(`/data/dispatch/${dispatch}`);
+    }
+
+    function promptOrigin() {
+      const origin = prompt("Enter Origin Number:");
+      if (origin) updateEndpoint(`/data/origin/${origin}`);
+    }
+
+    function promptDate() {
+      const date = prompt("Enter Date (YYYY-MM-DD):");
+      if (date) updateEndpoint(`/data/date/${date}`);
+    }
+
+    function promptDateRange() {
+      const startDate = prompt("Enter Start Date (YYYY-MM-DD):");
+      const endDate = prompt("Enter End Date (YYYY-MM-DD):");
+      if (startDate && endDate) updateEndpoint(`/data/daterange/${startDate}/${endDate}`);
+    }
+
+    function promptPickup() {
+      const location = prompt("Enter Pickup Location ID:");
+      if (location) updateEndpoint(`/data/pickup/${location}`);
+    }
+
+    function promptDropoff() {
+      const location = prompt("Enter Dropoff Location ID:");
+      if (location) updateEndpoint(`/data/dropoff/${location}`);
+    }
+
+    function promptDistance() {
+      const miles = prompt("Enter Minimum Trip Distance (miles):");
+      if (miles) updateEndpoint(`/data/distance/${miles}`);
+    }
+
+    function promptFare() {
+      const amount = prompt("Enter Minimum Fare Amount:");
+      if (amount) updateEndpoint(`/data/fare/${amount}`);
+    }
+
+    function promptTips() {
+      const amount = prompt("Enter Minimum Tips Amount:");
+      if (amount) updateEndpoint(`/data/tips/${amount}`);
+    }
+
+    // Initial fetch based on current URL
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchData(location.pathname);
+    });
+  </script>
+</body>
+</html>
