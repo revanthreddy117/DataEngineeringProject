@@ -3,6 +3,8 @@
 ## Description
 This project involves building an application to scrape, store, and visualize data from the [NYC TLC Trip Record Data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page) Trip Record Data 
 
+## Contributed by Abhishek Pandey and Revanth Reddy.
+
 
 
 ## Steps
@@ -24,14 +26,23 @@ This project involves building an application to scrape, store, and visualize da
    - Using the `pymongo` library to connect to a local MongoDB instance.
    - Ingesting all data from the downloaded files into a single collection.
 
-   ![MongoDB Image]([Screenshot (44)](https://github.com/user-attachments/assets/2b61406e-21ab-4a79-8a67-370281fbd381)
-end-image.png)
+   ![Screenshot (44)](https://github.com/user-attachments/assets/ad955524-857c-4f12-92db-1ec72616bbd1)
+
 
 **Step** 3. **Creating REST API**
    - For the backend, we have used Express and Node.js.
    - We have created 10 REST APIs to interact with the data.
+     
+![Screenshot (136)](https://github.com/user-attachments/assets/05e7490e-b086-4843-a5b1-b44bb6583264)
+![Screenshot (137)](https://github.com/user-attachments/assets/89f7fc3b-bc65-4e27-919f-73e5084655e7)
+
 
 **Step** 4. **Frontend Development**
    - For the frontend, we have used HTML, CSS, and JavaScript.
+    ![Screenshot (128)](https://github.com/user-attachments/assets/960f6493-cd99-4aff-b7c7-e382d27bac3f)
+    ![Frontend Image]![Screenshot (130)](https://github.com/user-attachments/assets/fa0b8c5c-205d-4dff-89d9-efbc5a4a0f6c)
+    ![Frontend Image]![Screenshot (131)](https://github.com/user-attachments/assets/7fb9e81e-4af5-4a23-8ad4-dae0794c0d0f)
+
+
 
     
