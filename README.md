@@ -22,7 +22,7 @@ This project involves building an application to scrape, store, and visualize da
    - With the response of the GET request, if it is successful, parse the content to find parquet files and find all links to February and March 2019, and download them, storing them into our directory.
 
 **Step** 2. **Ingesting data into MongoDB**
-   - MongoDB is a document-oriented NoSQL database designed to store and manage unstructured data. It doesn’t require a predefined schema.
+   - MongoDB is a document-oriented NoSQL database designed to store and manage unstructured data. It doesn’t require a predefined schema. For SQL databases we have to define schema for every file, so MongoDB removes that need to define schema.
    - Using the `pymongo` library to connect to a local MongoDB instance.
    - Ingesting all data from the downloaded files into a single collection.
 
